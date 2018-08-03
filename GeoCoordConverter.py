@@ -8,6 +8,8 @@ def dms_to_dd(entry):
     """
 
     numeric_entry = re.sub("\D", "", entry)
-    #hh, mm, ss = int(numeric_entry[0:2]), int(numeric_entry[2:4]), int(numeric_entry[4:]
-    hh, mm, ss = float(numeric_entry[0:2]), float(numeric_entry[2:4]), float(numeric_entry[4:])
-    return hh + mm/60 + ss/3600
+    hh, mm, ss = float(numeric_entry[0:-4]), float(numeric_entry[-4:-2]), float(numeric_entry[-2:])
+    if entry[0] == "-":
+        return -(hh + mm/60 + ss/3600)
+    else:
+        return hh + mm/60 + ss/3600
